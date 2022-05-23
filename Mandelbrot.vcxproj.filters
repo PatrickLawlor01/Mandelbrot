@@ -32,6 +32,15 @@
     <ClInclude Include="console.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="zmatrix.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mandelframe.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="consts.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="complex.cpp">
@@ -41,6 +50,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zmatrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mandelframe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

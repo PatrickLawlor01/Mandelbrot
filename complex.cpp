@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <QtCore/qtextstream.h>
+#include <cmath>
 
 std::ostream& operator<<(std::ostream& os, const Complex& c) {
 	if (c.im >= 0) {
@@ -59,6 +60,12 @@ Complex& Complex::operator*=(double real_rhs) {
 	return *this;
 }
 
+Complex& Complex::operator+=(const Complex& rhs) {
+	this->re += rhs.re;
+	this->im += rhs.im;
+	return *this;
+}
+
 
 
 std::string Complex::toString()
@@ -72,5 +79,9 @@ std::string Complex::toString()
 	}
 	if (this->re == 0 || this->im == 0) ss << "0";
 	return ss.str();
+}
+
+double Complex::abs() {
+	return std::sqrt(std::pow(re, 2) + std::pow(im, 2));
 }
 
