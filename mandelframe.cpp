@@ -30,15 +30,20 @@ int MandelFrame::mandelIterate(Complex& c, int max_iterations, double max_abs) {
 	
 	Complex temp;
 	int counter = 0;
+	bool escaped{ false };
 
 	for (int i = 0; i < max_iterations; i++) {
 		counter++;
 		temp *= temp;
 		temp += c;
-		if (temp.abs() > max_abs) break;
+		if (temp.abs() > max_abs) {
+			escaped = true;
+			break;
+		}
 	}
 	c.re = temp.re;
 	c.im = temp.im;
+	if (!escaped) counter = -1;
 	return counter;
 
 }
