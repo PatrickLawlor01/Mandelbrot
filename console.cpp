@@ -3,7 +3,7 @@
 
 Console::Console() {
 
-	this->setGeometry(1200, 1600, 400, 400);
+	//this->setGeometry(1200, 1600, 400, 400);
 
 	text = new QTextEdit();
 	text->setReadOnly(true);
