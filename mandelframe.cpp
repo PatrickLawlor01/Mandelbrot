@@ -6,15 +6,16 @@ MandelFrame::MandelFrame(double x_left, double x_right, double y_top, double y_b
 		x_delta(x_right - x_left), y_delta(y_top - y_bottom),
 		x_tick(x_delta/SIZE_X), y_tick(y_delta/SIZE_Y)
 {
+	z = new ZMatrix;
 
 	int index;
 	for (int x = 0; x < SIZE_X; x++) {
 		for (int y = 0; y < SIZE_Y; y++) {
 
-			index = z.getIndex(x, y);
-			z.setElement(index, (x_left + (x_tick * x)), (y_bottom + (y_tick * y)));
+			index = z->getIndex(x, y);
+			z->setElement(index, (x_left + (x_tick * x)), (y_bottom + (y_tick * y)));
 
-			z.setCount(index, mandelIterate(z.getElement(index), ITERATIONS, MAX_ABS));
+			z->setCount(index, mandelIterate(z->getElement(index), ITERATIONS, MAX_ABS));
 
 		}
 
@@ -23,7 +24,8 @@ MandelFrame::MandelFrame(double x_left, double x_right, double y_top, double y_b
 
 
 MandelFrame::~MandelFrame() {
-
+	delete z;
+	z = nullptr;
 }
 
 int MandelFrame::mandelIterate(Complex& c, int max_iterations, double max_abs) {

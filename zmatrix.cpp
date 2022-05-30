@@ -16,6 +16,7 @@ ZMatrix::ZMatrix() {
 
 ZMatrix::~ZMatrix() {
 	delete[] plane;
+	delete[] counts;
 }
 
 Complex& ZMatrix::getElement(int i) {

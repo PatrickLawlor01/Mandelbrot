@@ -41,6 +41,12 @@
     <ClInclude Include="consts.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="view.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="root.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="complex.cpp">
@@ -56,6 +62,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mandelframe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="root.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

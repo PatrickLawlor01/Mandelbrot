@@ -89,6 +89,8 @@
     <ClInclude Include="console.h" />
     <ClInclude Include="consts.h" />
     <ClInclude Include="mandelframe.h" />
+    <ClInclude Include="root.h" />
+    <ClInclude Include="view.h" />
     <ClInclude Include="widgets.h" />
     <ClInclude Include="zmatrix.h" />
   </ItemGroup>
@@ -97,6 +99,8 @@
     <ClCompile Include="console.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mandelframe.cpp" />
+    <ClCompile Include="root.cpp" />
+    <ClCompile Include="view.cpp" />
     <ClCompile Include="zmatrix.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
