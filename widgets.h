@@ -13,6 +13,7 @@
 #include <QtGui/QPainter>
 #include <QtGui/qpixmap.h>
 #include <QtGui/QPaintEvent>
+#include <QtGui/qpen.h>
 
 #include <QtCore/qstring.h>
 #include <QtCore/qtextstream.h>

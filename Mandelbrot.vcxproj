@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="canvas.h" />
     <ClInclude Include="complex.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="consts.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="zmatrix.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="canvas.cpp" />
     <ClCompile Include="complex.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="main.cpp" />

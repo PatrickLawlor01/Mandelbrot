@@ -6,12 +6,6 @@ ZMatrix::ZMatrix() {
 	plane = new Complex[ARR_SIZE];
 	counts = new int[ARR_SIZE];
 
-	//for (int i = 0; i < ZMatrix::ARR_SIZE; i++) {
-	//	
-	//	plane[i].re = 0;
-	//	plane[i].im = 0;
-	//	
-	//}
 }
 
 ZMatrix::~ZMatrix() {
@@ -47,6 +41,6 @@ int ZMatrix::getY(int i) {
 
 
 int ZMatrix::getIndex(int x, int y) {
-	return ((y - 1) * SIZE_X) + x;
+	return (y  * SIZE_X) + x;
 }
 

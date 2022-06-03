@@ -23,28 +23,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="complex.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="widgets.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="console.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="zmatrix.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="mandelframe.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="root.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="complex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="canvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="consts.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mandelframe.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="view.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="root.h">
+    <ClInclude Include="widgets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,6 +71,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="root.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="canvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
