@@ -49,8 +49,12 @@ Complex Complex::operator*(double real_rhs) {
 }
 
 Complex& Complex::operator*=(const Complex& rhs) {
-	this->re = (this->re * rhs.re) - (this->im * rhs.im);
-	this->im = (this->re * rhs.im) + (this->im * rhs.re);
+	double re1 = this->re;
+	double im1 = this->im;
+	double re2 = rhs.re;
+	double im2 = rhs.im;
+	this->re = (re1 * re2) - (im1 * im2);
+	this->im = (re1 * im2) + (im1 * re2);
 	return *this;
 }
 

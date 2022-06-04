@@ -18,6 +18,9 @@ public:
 	MandelFrame(double x_left, double x_right, double y_top, double y_bottom);
 	~MandelFrame();
 
+	void setDeltasAndTicks(double x_left, double x_right, double y_top, double y_bottom);
+	void setPlaneValues();
+
 	int mandelIterate(int index, int max_iterations, double max_abs);
 
 };

@@ -23,9 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="zmatrix.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="root.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="widgets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zmatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

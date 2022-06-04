@@ -8,7 +8,13 @@ MandelFrame::MandelFrame(double x_left, double x_right, double y_top, double y_b
 {
 	z = new ZMatrix;
 
-	if (TEST_INDEX > 0) console = new Console;
+	this->setPlaneValues();
+
+}
+
+
+void MandelFrame::setPlaneValues() {
+
 
 	int index;
 	for (int x = 0; x < SIZE_X; x++) {
@@ -17,23 +23,39 @@ MandelFrame::MandelFrame(double x_left, double x_right, double y_top, double y_b
 			index = z->getIndex(x, y);
 
 			if (index == TEST_INDEX) {
-				console->cout("x: " + std::to_string(x));
-				console->cout("y: " + std::to_string(y));
-				console->cout("x in plane: " + std::to_string(_x_left + (x_tick * x)));
-				console->cout("y in plane: " + std::to_string(_y_bottom + (y_tick * y)));
+				if (!console) {
+					console = new Console();
+					console->show();
+					console->cout("x: " + std::to_string(x));
+					console->cout("y: " + std::to_string(y));
+					console->cout("x in plane: " + std::to_string(_x_left + (x_tick * x)));
+					console->cout("y in plane: " + std::to_string(_y_bottom + (y_tick * y)));
 
+				}
 			}
+				z->setElement(index, (_x_left + (x_tick * x)), (_y_bottom + (y_tick * y)));
 
-			z->setElement(index, (_x_left + (x_tick * x)), (_y_bottom + (y_tick * y)));
 
+				z->setCount(index, mandelIterate(index, ITERATIONS, MAX_ABS));
 
-			z->setCount(index, mandelIterate(index, ITERATIONS, MAX_ABS));
 
 		}
 
 	}
 }
 
+void MandelFrame::setDeltasAndTicks(double x_left, double x_right, double y_top, double y_bottom) {
+
+	_x_left = x_left;
+	_x_right = x_right;
+	_y_top = y_top;
+	_y_bottom = y_bottom;
+	x_delta = _x_right - _x_left;
+	y_delta = _y_top - _y_bottom;
+	x_tick = x_delta / SIZE_X; 
+	y_tick = y_delta / SIZE_Y;
+
+}
 
 MandelFrame::~MandelFrame() {
 	delete z;
