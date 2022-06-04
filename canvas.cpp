@@ -5,7 +5,10 @@ Canvas::Canvas(MandelFrame* mf, double x_left, double x_right, double y_top, dou
 	: QWidget(),
 	_x_left(x_left), _x_right(x_right), _y_top(y_top), _y_bottom(y_bottom),
 	_mf(mf)
-{ }
+{ 
+	cursorWait = new QCursor(Qt::WaitCursor);
+	cursorNormal = new QCursor(Qt::ArrowCursor);
+}
 
 Canvas::~Canvas() {
 	delete _mf;
@@ -16,6 +19,11 @@ Canvas::~Canvas() {
 		delete console;
 		console = nullptr;
 	}
+
+	delete cursorWait;
+	delete cursorNormal;
+	cursorWait = nullptr;
+	cursorNormal = nullptr;
 }
 
 void Canvas::paintEvent(QPaintEvent* event) {
@@ -23,65 +31,83 @@ void Canvas::paintEvent(QPaintEvent* event) {
 	painter = new QPainter(this);
 
 	int index{ 0 };
+	int count{ 0 };
 
 	for (int x = 0; x < SIZE_X; x++) {
 		for (int y = 0; y < SIZE_Y; y++) {
 			index = _mf->z->getIndex(x, y);
-
-			switch (_mf->z->getCount(index)) {
-			case -1:
+			count = _mf->z->getCount(index);
+			if (count == -1)
 				painter->setPen(blackPen);
-				break;
-			case 0:
-				painter->setPen(blue1black3Pen);
-				break;
-			case 1:
-				painter->setPen(blue2black2Pen);
-				break;
-			case 2:
-				painter->setPen(blue3black1Pen);
-				break;
-			case 3:
-				painter->setPen(bluePen);
-				break;
-			case 4:
-				painter->setPen(green1blue3Pen);
-				break;
-			case 5:
-				painter->setPen(green2blue2Pen);
-				break;
-			case 6:
-				painter->setPen(green3blue1Pen);
-				break;
-			case 7:
-				painter->setPen(greenPen);
-				break;
-			case 8:
-				painter->setPen(red1green3Pen);
-				break;
-			case 9:
-				painter->setPen(red2green2Pen);
-				break;
-			case 10:
-				painter->setPen(red3green1Pen);
-				break;
-			case 11:
-				painter->setPen(redPen);
-				break;
-			case 12:
-				painter->setPen(white1red3Pen);
-				break;
-			case 13:
-				painter->setPen(white2red2Pen);
-				break;
-			case 14:
-				painter->setPen(white3red1Pen);
-				break;
-			default:
+			else if (count > 255)
 				painter->setPen(whitePen);
-				break;
+			
+			
+			else {
+
+				//switch (_mf->z->getCount(index)-zooms) {
+				//case 0:
+				//	painter->setPen(blue1black3Pen);
+				//	break;
+				//case 1:
+				//	painter->setPen(blue2black2Pen);
+				//	break;
+				//case 2:
+				//	painter->setPen(blue3black1Pen);
+				//	break;
+				//case 3:
+				//	painter->setPen(bluePen);
+				//	break;
+				//case 4:
+				//	painter->setPen(green1blue3Pen);
+				//	break;
+				//case 5:
+				//	painter->setPen(green2blue2Pen);
+				//	break;
+				//case 6:
+				//	painter->setPen(green3blue1Pen);
+				//	break;
+				//case 7:
+				//	painter->setPen(greenPen);
+				//	break;
+				//case 8:
+				//	painter->setPen(red1green3Pen);
+				//	break;
+				//case 9:
+				//	painter->setPen(red2green2Pen);
+				//	break;
+				//case 10:
+				//	painter->setPen(red3green1Pen);
+				//	break;
+				//case 11:
+				//	painter->setPen(redPen);
+				//	break;
+				//case 12:
+				//	painter->setPen(white1red3Pen);
+				//	break;
+				//case 13:
+				//	painter->setPen(white2red2Pen);
+				//	break;
+				//case 14:
+				//	painter->setPen(white3red1Pen);
+				//	break;
+				//default:
+				//	painter->setPen(whitePen);
+				//	break;
+				//}
+
+				r = (5 * count) + 10 - (3*zooms);
+				g = (4 * count) + 30 - (2*zooms);
+				b = (3 * count) + 50 - zooms;
+	
+				if (r > 255) r = 255;
+				if (g > 255) g = 255;
+				if (b > 255) b = 255;
+				painter->setPen(QPen(QColor(r, g, b)));
+
 			}
 			painter->drawPoint(x, y);
+
 
 
 			if (index == TEST_INDEX) {
@@ -97,6 +123,10 @@ void Canvas::paintEvent(QPaintEvent* event) {
 }
 
 void Canvas::mousePressEvent(QMouseEvent* event) {
+
+	this->setCursor(*cursorWait);
+	
+
 	double x = (double)event->pos().x();
 	double y = (double)event->pos().y();
 
@@ -134,5 +164,8 @@ void Canvas::mousePressEvent(QMouseEvent* event) {
 	_mf->setPlaneValues();
 
 	update();
+	zooms++;
+
+	this->setCursor(*cursorNormal);
 
 }

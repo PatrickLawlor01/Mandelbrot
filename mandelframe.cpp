@@ -22,17 +22,17 @@ void MandelFrame::setPlaneValues() {
 
 			index = z->getIndex(x, y);
 
-			if (index == TEST_INDEX) {
-				if (!console) {
-					console = new Console();
-					console->show();
-					console->cout("x: " + std::to_string(x));
-					console->cout("y: " + std::to_string(y));
-					console->cout("x in plane: " + std::to_string(_x_left + (x_tick * x)));
-					console->cout("y in plane: " + std::to_string(_y_bottom + (y_tick * y)));
+			//if (index == TEST_INDEX) {
+			//	if (!console) {
+			//		console = new Console();
+			//		console->show();
+			//		console->cout("x: " + std::to_string(x));
+			//		console->cout("y: " + std::to_string(y));
+			//		console->cout("x in plane: " + std::to_string(_x_left + (x_tick * x)));
+			//		console->cout("y in plane: " + std::to_string(_y_bottom + (y_tick * y)));
 
-				}
-			}
+			//	}
+			//}
 				z->setElement(index, (_x_left + (x_tick * x)), (_y_bottom + (y_tick * y)));
 
 
@@ -77,16 +77,16 @@ int MandelFrame::mandelIterate(int index, int max_iterations, double max_abs) {
 
 	for (int i = 0; i < max_iterations; i++) {
 
-		if (index == TEST_INDEX) {
-			console->cout("iteration(a): " + std::to_string(i) + ", re: " + std::to_string(temp.re) + ", im: " + std::to_string(temp.im));
+		//if (index == TEST_INDEX) {
+		//	console->cout("iteration(a): " + std::to_string(i) + ", re: " + std::to_string(temp.re) + ", im: " + std::to_string(temp.im));
 
-		}
+		//}
 
 		counter++;
 		temp = temp*temp;
-		if (index == TEST_INDEX) console->cout("iteration(b): " + std::to_string(i) + ", re: " + std::to_string(temp.re) + ", im: " + std::to_string(temp.im));
+		//if (index == TEST_INDEX) console->cout("iteration(b): " + std::to_string(i) + ", re: " + std::to_string(temp.re) + ", im: " + std::to_string(temp.im));
 		temp += c;
-		if (index == TEST_INDEX) console->cout("iteration(c): " + std::to_string(i) + ", re: " + std::to_string(temp.re) + ", im: " + std::to_string(temp.im));
+		//if (index == TEST_INDEX) console->cout("iteration(c): " + std::to_string(i) + ", re: " + std::to_string(temp.re) + ", im: " + std::to_string(temp.im));
 		
 		if (temp.abs() > max_abs) {
 			escaped = true;
@@ -95,7 +95,8 @@ int MandelFrame::mandelIterate(int index, int max_iterations, double max_abs) {
 	}
 	//c.re = temp.re;
 	//c.im = temp.im;
-	if (!escaped) counter = -1;
+	if (!escaped) 
+		counter = -1;
 	return counter;
 
 }

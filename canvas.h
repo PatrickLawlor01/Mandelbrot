@@ -11,10 +11,13 @@ public:
 
 	Console* console {nullptr};
 
+	QCursor* cursorWait;
+	QCursor* cursorNormal;
+
 	double _x_left, _x_right, _y_top, _y_bottom;
 	
-	
-	
+	int zooms{ 0 };
+	int r{ 1 }, g{ 1 }, b{ 1 };
 	
 
 	const QColor white = QColor(255, 255, 255, 255);

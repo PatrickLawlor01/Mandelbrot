@@ -15,6 +15,7 @@
 #include <QtGui/QPaintEvent>
 #include <QtGui/qpen.h>
 #include <QtGui/QMouseEvent>
+#include <QtGui/qcursor.h>
 
 #include <QtCore/qstring.h>
 #include <QtCore/qtextstream.h>
