@@ -12,10 +12,12 @@ private:
 	QCursor* cursorWait;
 	QCursor* cursorNormal;
 	MandelFrame* _mf;
+	
 
 	// track number of zooms, current RGB values for point colouring
 	int zooms{ 0 };
 	int r{ 1 }, g{ 1 }, b{ 1 };
+	double whiteBracket{ 0 }, yellowBracket{ 0 }, orangeBracket{ 0 }, redBracket{ 0 }, purpleBracket{ 0 }, blueBracket{ 0 }, greenBracket{ 0 };
 
 	long double _x_left, _x_right, _y_top, _y_bottom;
 

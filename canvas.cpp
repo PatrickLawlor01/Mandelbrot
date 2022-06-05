@@ -1,5 +1,6 @@
 #include "canvas.h"
 #include "consts.h"
+#include <cmath>
 
 Canvas::Canvas(MandelFrame* mf, long double x_left, long double x_right, long double y_top, long double y_bottom)
 	: QWidget(),
@@ -28,26 +29,62 @@ void Canvas::paintEvent(QPaintEvent* event) {
 
 	int index{ 0 };
 	int count{ 0 };
+	double iterations{ 0 };
+	double dcount{ 0 };
+	double iter_resize{ 0 };
 
 	// colour each point depending on its corresponding count value 
 	for (int x = 0; x < SIZE_X; x++) {
 		for (int y = 0; y < SIZE_Y; y++) {
 			index = _mf->z->getIndex(x, y);
 			count = _mf->z->getCount(index);
+			dcount = (double)count;
+			iterations = (double)_mf->iterations;
+			iter_resize = iterations * 0.1667;
 			// if -1, point was in Mandelbrot set - use black
 			if (count == -1)
 				painter->setPen(blackPen);
-			else if (count > ITERATIONS)
+			else if (count > iterations)
 				painter->setPen(whitePen);
 			else {
 				// define colour scheme linked to count
-				g = (5 * count);
-				b = (4 * count)+50;
-				r = (3 * count)+100;
-	
-				if (r > 255) r = 255;
-				if (g > 255) g = 255;
-				if (b > 255) b = 255;
+				//g = (5 * count);
+				//b = (4 * count)+50;
+				//r = (3 * count)+100;
+
+				whiteBracket = (std::fmax(dcount - (iterations * 0.8333), 0)/iter_resize)*255;
+
+				if (count <= iterations * 0.8333)
+					yellowBracket = (std::fmax(dcount - (iterations * 0.6667), 0) / iter_resize)*255;
+				else
+					yellowBracket = (std::fmax(iterations - dcount, 0) / iter_resize)*255;
+
+				if (count <= iterations * 0.6667)
+					orangeBracket = (std::fmax(dcount - (iterations * 0.5), 0) / iter_resize) * 255;
+				else
+					orangeBracket = (std::fmax((iterations*0.8333) - dcount, 0) / iter_resize) * 255;
+
+				if (count <= iterations * 0.5)
+					redBracket = (std::fmax(dcount - (iterations * 0.3333), 0) / iter_resize)*255;
+				else
+					redBracket = (std::fmax((iterations*0.6667) - dcount, 0) / iter_resize) * 255;
+
+				if (count <= iterations * 0.3333)
+					purpleBracket = (std::fmax(dcount - (iterations * 0.1667), 0) / iter_resize) * 255;
+				else
+					purpleBracket = (std::fmax((iterations * 0.5) - dcount, 0) / iter_resize) * 255;
+
+				if (count <= iterations * 0.1667)
+					blueBracket = (std::fmax(dcount, 0) / iter_resize) * 255;
+				else
+					blueBracket = (std::fmax((iterations * 0.3333) - dcount, 0) / iter_resize) * 255;
+
+				greenBracket = (std::fmax((iterations * 0.1667) - dcount, 0) / iter_resize) * 255;
+
+				r = std::fmin(whiteBracket + orangeBracket + redBracket + purpleBracket + yellowBracket, 255);
+				g = std::fmin(whiteBracket + yellowBracket + greenBracket + (0.5*orangeBracket), 255);
+				b = std::fmin(whiteBracket + purpleBracket + blueBracket + greenBracket, 255);
+
 				painter->setPen(QPen(QColor(r, g, b)));
 
 			}
@@ -103,6 +140,7 @@ void Canvas::mousePressEvent(QMouseEvent* event) {
 
 	update();
 	zooms++;
+	_mf->iterations += ITERATIONS_INCREMENT;
 
 	this->setCursor(*cursorNormal);
 }

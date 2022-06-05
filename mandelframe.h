@@ -1,6 +1,7 @@
 #pragma once
 #include "zmatrix.h"
 #include "console.h"
+#include "consts.h"
 
 // class handles ZMatrix object, maps ZMatrix array to dimensions of view, and carries out computations
 
@@ -16,6 +17,8 @@ class MandelFrame {
 public:
 
 	ZMatrix* z;
+
+	int iterations = MAX_ITERATIONS;
 
 	MandelFrame(long double x_left, long double x_right, long double y_top, long double y_bottom);
 	~MandelFrame();

@@ -5,7 +5,7 @@ int main(int argc, char* argv[]) {
 
 	QApplication app = QApplication(argc, argv);
 
-	View root(-3, 1, 2, -2);
+	View root(-2.5, 1.5, 2, -2);
 
 
 	return app.exec();

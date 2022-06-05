@@ -31,7 +31,7 @@ void MandelFrame::setPlaneValues() {
 				z->setElement(index, (_x_left + (x_tick * x)), (_y_bottom + (y_tick * y)));
 
 				// compute iteration cutoff point for each z in ZMatrix->plane[], store result in ZMatrix->count[] 
-				z->setCount(index, mandelIterate(index, ITERATIONS, MAX_ABS));
+				z->setCount(index, mandelIterate(index, iterations, MAX_ABS));
 		}
 
 	}
