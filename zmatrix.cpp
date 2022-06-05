@@ -20,7 +20,7 @@ Complex& ZMatrix::getElement(int i) {
 }
 
 
-void ZMatrix::setElement(int i, double _re, double _im) {
+void ZMatrix::setElement(int i, long double _re, long double _im) {
 	this->plane[i].re = _re;
 	this->plane[i].im = _im;
 }

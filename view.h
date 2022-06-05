@@ -13,6 +13,6 @@ class View : public QMainWindow {
 
 public:
 
-	View(double x_left, double x_right, double y_top, double y_bottom);
+	View(long double x_left, long double x_right, long double y_top, long double y_bottom);
 	~View();
 };

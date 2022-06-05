@@ -16,7 +16,7 @@ public:
 	~ZMatrix();
 
 	Complex& getElement(int i);
-	void setElement(int i, double _re, double _im);
+	void setElement(int i, long double _re, long double _im);
 
 	int getCount(int i);
 	void setCount(int i, int count);

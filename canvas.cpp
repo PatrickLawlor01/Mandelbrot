@@ -1,7 +1,7 @@
 #include "canvas.h"
 #include "consts.h"
 
-Canvas::Canvas(MandelFrame* mf, double x_left, double x_right, double y_top, double y_bottom)
+Canvas::Canvas(MandelFrame* mf, long double x_left, long double x_right, long double y_top, long double y_bottom)
 	: QWidget(),
 	_x_left(x_left), _x_right(x_right), _y_top(y_top), _y_bottom(y_bottom),
 	_mf(mf)
@@ -37,13 +37,13 @@ void Canvas::paintEvent(QPaintEvent* event) {
 			// if -1, point was in Mandelbrot set - use black
 			if (count == -1)
 				painter->setPen(blackPen);
-			else if (count > 50)
+			else if (count > ITERATIONS)
 				painter->setPen(whitePen);
 			else {
 				// define colour scheme linked to count
-				r = (5 * count);
-				g = (4 * count)+50;
-				b = (3 * count)+100;
+				g = (5 * count);
+				b = (4 * count)+50;
+				r = (3 * count)+100;
 	
 				if (r > 255) r = 255;
 				if (g > 255) g = 255;
@@ -85,10 +85,10 @@ void Canvas::mousePressEvent(QMouseEvent* event) {
 		y = d_size_y - (d_resize_y / 2);
 
 	// figure out new dimensions for MandelFrame based on where user clicked and the zoom factor defined in consts.h
-	double new_x_left = _x_left + (((x - (d_resize_x / 2)) / d_size_x) * (_x_right - _x_left));
-	double new_x_right = _x_left + (((x + (d_resize_x / 2)) / d_size_x) * (_x_right - _x_left));
-	double new_y_bottom = _y_bottom + (((y - (d_resize_y / 2)) / d_size_y) * (_y_top - _y_bottom));
-	double new_y_top = _y_bottom + (((y + (d_resize_y / 2)) / d_size_y) * (_y_top - _y_bottom));
+	long double new_x_left = _x_left + (((x - (d_resize_x / 2)) / d_size_x) * (_x_right - _x_left));
+	long double new_x_right = _x_left + (((x + (d_resize_x / 2)) / d_size_x) * (_x_right - _x_left));
+	long double new_y_bottom = _y_bottom + (((y - (d_resize_y / 2)) / d_size_y) * (_y_top - _y_bottom));
+	long double new_y_top = _y_bottom + (((y + (d_resize_y / 2)) / d_size_y) * (_y_top - _y_bottom));
 
 	// overwrite dimension values held locally
 	_x_left = new_x_left;

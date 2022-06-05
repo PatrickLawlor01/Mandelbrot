@@ -17,7 +17,7 @@ private:
 	int zooms{ 0 };
 	int r{ 1 }, g{ 1 }, b{ 1 };
 
-	double _x_left, _x_right, _y_top, _y_bottom;
+	long double _x_left, _x_right, _y_top, _y_bottom;
 
 	const QColor white = QColor(255, 255, 255, 255);
 	const QColor red = QColor(255, 0, 0, 255);
@@ -38,7 +38,7 @@ private:
 
 public:
 
-	Canvas(MandelFrame* mf, double x_left, double x_right, double y_top, double y_bottom);
+	Canvas(MandelFrame* mf, long double x_left, long double x_right, long double y_top, long double y_bottom);
 	~Canvas();
 
 };

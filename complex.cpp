@@ -16,7 +16,7 @@ std::ostream& operator<<(std::ostream& os, const Complex& c) {
 }
 
 
-Complex::Complex(double _re, double _im) {
+Complex::Complex(long double _re, long double _im) {
 
 	re = _re;
 	im = _im;
@@ -53,10 +53,10 @@ Complex Complex::operator*(double real_rhs) {
 
 
 Complex& Complex::operator*=(const Complex& rhs) {
-	double re1 = this->re;
-	double im1 = this->im;
-	double re2 = rhs.re;
-	double im2 = rhs.im;
+	long double re1 = this->re;
+	long double im1 = this->im;
+	long double re2 = rhs.re;
+	long double im2 = rhs.im;
 	this->re = (re1 * re2) - (im1 * im2);
 	this->im = (re1 * im2) + (im1 * re2);
 	return *this;

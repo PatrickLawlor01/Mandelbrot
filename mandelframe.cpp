@@ -1,7 +1,7 @@
 #include "mandelframe.h"
 #include "consts.h"
 
-MandelFrame::MandelFrame(double x_left, double x_right, double y_top, double y_bottom)
+MandelFrame::MandelFrame(long double x_left, long double x_right, long double y_top, long double y_bottom)
 	: _x_left(x_left), _x_right(x_right), _y_top(y_top), _y_bottom(y_bottom),
 		x_delta(x_right - x_left), y_delta(y_top - y_bottom),
 		x_tick(x_delta/SIZE_X), y_tick(y_delta/SIZE_Y)
@@ -39,7 +39,7 @@ void MandelFrame::setPlaneValues() {
 
 
 // reset dimensions, deltas and ticks values upon initialisation and after zoom
-void MandelFrame::setDeltasAndTicks(double x_left, double x_right, double y_top, double y_bottom) {
+void MandelFrame::setDeltasAndTicks(long double x_left, long double x_right, long double y_top, long double y_bottom) {
 
 	_x_left = x_left;
 	_x_right = x_right;

@@ -25,7 +25,7 @@ public:
 	double re{0}, im{0};
 
 	Complex();
-	Complex(double _re, double _im);
+	Complex(long double _re, long double _im);
 
 	double abs();
 	
