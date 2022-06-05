@@ -1,14 +1,13 @@
 #include "console.h"
 
-
 Console::Console() {
 
-	//this->setGeometry(1200, 1600, 400, 400);
+	this->setGeometry(10, 10, 400, 400);
 
 	text = new QTextEdit();
 	text->setReadOnly(true);
 
-	QPushButton* clearButton = new QPushButton("Clear");
+	clearButton = new QPushButton("Clear");
 	clearButton->connect(clearButton, &QPushButton::clicked, this, &Console::clicked_clear);
 
 	layout = new QVBoxLayout();
@@ -25,17 +24,18 @@ Console::~Console() {
 
 	delete text;
 	delete layout;
+	delete clearButton;
 
 }
 
-void Console::clear() {
-	this->text->clear();
-}
 
+// send new message to console
 void Console::cout(std::string newText) {
 	this->text->append(QString::fromStdString(newText));
 }
 
+
+// erase contents of console
 void Console::clicked_clear() {
-	this->clear();
+	this->text->clear();
 }

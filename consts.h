@@ -1,13 +1,13 @@
 #pragma once
 
-static const int SIZE_X = 1200;
-static const int SIZE_Y = 1200;
-static const int ARR_SIZE = SIZE_X * SIZE_Y;
-static const int ITERATIONS = 50;
-static const double MAX_ABS = 2.0;
+static const int SIZE_X = 1200;						// dimensions of viewer window in pixels - x
+static const int SIZE_Y = 1200;						// dimensions of viewer window in pixels - y
+static const int ARR_SIZE = SIZE_X * SIZE_Y;		// size of 1d array to store required number of z
+static const int ITERATIONS = 50;					// how many iterations before z confirmed member of Mandelbrot
+static const double MAX_ABS = 2.0;					// cutoff magnitude for z to be excluded from Mandebrot
 
-static const int TEST_INDEX = -1;
+static const int TEST_INDEX = -1;					// for debugging
 
-static const int ZOOM_FACTOR = 5;
-static const int RESIZE_X = SIZE_X / ZOOM_FACTOR;
-static const int RESIZE_Y = SIZE_Y / ZOOM_FACTOR;
+static const int ZOOM_FACTOR = 10;					// how much to zoom in when user zooms
+static const int RESIZE_X = SIZE_X / ZOOM_FACTOR;	// for remapping process
+static const int RESIZE_Y = SIZE_Y / ZOOM_FACTOR;	// for remapping process

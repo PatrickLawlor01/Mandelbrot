@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-
+// class to handle complex numbers & arithmentic
 
 class Complex {
 

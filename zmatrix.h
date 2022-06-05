@@ -1,14 +1,16 @@
 #pragma once
 #include "complex.h"
 
+// data structure of variables of Complex type 
+// underlying storage is 1d array, with functions to switch between array and 2d coordinates for grid size (SIZE_X, SIZE_Y)
+// also contains an int array of same size to track iteration cutoff for each point
+
 class ZMatrix {
 
 	Complex* plane;
 	int* counts;
 
 public:
-
-
 
 	ZMatrix();
 	~ZMatrix();

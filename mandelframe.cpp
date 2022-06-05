@@ -9,10 +9,16 @@ MandelFrame::MandelFrame(double x_left, double x_right, double y_top, double y_b
 	z = new ZMatrix;
 
 	this->setPlaneValues();
-
 }
 
 
+MandelFrame::~MandelFrame() {
+	delete z;
+	z = nullptr;
+}
+
+
+// set the complex numbers in ZMatrix as interpolated grid based on MandelFrame dimensions and SIZE_X, SIZE_Y
 void MandelFrame::setPlaneValues() {
 
 
@@ -22,28 +28,17 @@ void MandelFrame::setPlaneValues() {
 
 			index = z->getIndex(x, y);
 
-			//if (index == TEST_INDEX) {
-			//	if (!console) {
-			//		console = new Console();
-			//		console->show();
-			//		console->cout("x: " + std::to_string(x));
-			//		console->cout("y: " + std::to_string(y));
-			//		console->cout("x in plane: " + std::to_string(_x_left + (x_tick * x)));
-			//		console->cout("y in plane: " + std::to_string(_y_bottom + (y_tick * y)));
-
-			//	}
-			//}
 				z->setElement(index, (_x_left + (x_tick * x)), (_y_bottom + (y_tick * y)));
 
-
+				// compute iteration cutoff point for each z in ZMatrix->plane[], store result in ZMatrix->count[] 
 				z->setCount(index, mandelIterate(index, ITERATIONS, MAX_ABS));
-
-
 		}
 
 	}
 }
 
+
+// reset dimensions, deltas and ticks values upon initialisation and after zoom
 void MandelFrame::setDeltasAndTicks(double x_left, double x_right, double y_top, double y_bottom) {
 
 	_x_left = x_left;
@@ -54,20 +49,10 @@ void MandelFrame::setDeltasAndTicks(double x_left, double x_right, double y_top,
 	y_delta = _y_top - _y_bottom;
 	x_tick = x_delta / SIZE_X; 
 	y_tick = y_delta / SIZE_Y;
-
 }
 
-MandelFrame::~MandelFrame() {
-	delete z;
-	z = nullptr;
 
-	if (TEST_INDEX > 0) {
-		delete console;
-		console = nullptr;
-	}
-
-}
-
+// calculate iteration cutoff point - z is excluded from Mandelbrot set as soon as magnitude > 2, iteration count is recorded
 int MandelFrame::mandelIterate(int index, int max_iterations, double max_abs) {
 	
 	Complex c = z->getElement(index);
@@ -77,24 +62,17 @@ int MandelFrame::mandelIterate(int index, int max_iterations, double max_abs) {
 
 	for (int i = 0; i < max_iterations; i++) {
 
-		//if (index == TEST_INDEX) {
-		//	console->cout("iteration(a): " + std::to_string(i) + ", re: " + std::to_string(temp.re) + ", im: " + std::to_string(temp.im));
-
-		//}
-
 		counter++;
-		temp = temp*temp;
-		//if (index == TEST_INDEX) console->cout("iteration(b): " + std::to_string(i) + ", re: " + std::to_string(temp.re) + ", im: " + std::to_string(temp.im));
+		temp *= temp;
 		temp += c;
-		//if (index == TEST_INDEX) console->cout("iteration(c): " + std::to_string(i) + ", re: " + std::to_string(temp.re) + ", im: " + std::to_string(temp.im));
 		
 		if (temp.abs() > max_abs) {
 			escaped = true;
 			break;
 		}
 	}
-	//c.re = temp.re;
-	//c.im = temp.im;
+
+	// record -1 if max_iterations reached and z is still in set - assumed member of Mandelbrot set
 	if (!escaped) 
 		counter = -1;
 	return counter;

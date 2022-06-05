@@ -23,9 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="root.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="complex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -68,9 +65,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="root.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="canvas.cpp">

@@ -1,5 +1,7 @@
 #pragma once
 
+// Qt elements needed
+
 #include <QtWidgets/qapplication.h>
 #include <QtWidgets/qwidget.h>
 #include <QtWidgets/QHBoxLayout>

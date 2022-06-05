@@ -4,6 +4,7 @@
 #include <QtCore/qtextstream.h>
 #include <cmath>
 
+// for writing to std::cout
 std::ostream& operator<<(std::ostream& os, const Complex& c) {
 	if (c.im >= 0) {
 		os << c.re << "+" << c.im << "i";
@@ -15,7 +16,6 @@ std::ostream& operator<<(std::ostream& os, const Complex& c) {
 }
 
 
-
 Complex::Complex(double _re, double _im) {
 
 	re = _re;
@@ -23,30 +23,34 @@ Complex::Complex(double _re, double _im) {
 
 }
 
+
 Complex::Complex() {
 	re = 0;
 	im = 0;
 }
 
 
-
 Complex Complex::operator+(const Complex& rhs) {
 	return Complex(this->re + rhs.re, this->im + rhs.im);
 }
+
 
 Complex Complex::operator+(double real_rhs) {
 	Complex c = Complex(real_rhs, 0);
 	return *this + c;
 }
 
+
 Complex Complex::operator*(const Complex& rhs) {
 	return Complex((this->re * rhs.re) - (this->im * rhs.im), (this->re * rhs.im) + (this->im * rhs.re));
 }
+
 
 Complex Complex::operator*(double real_rhs) {
 	Complex c = Complex(real_rhs, 0);
 	return *this * c;
 }
+
 
 Complex& Complex::operator*=(const Complex& rhs) {
 	double re1 = this->re;
@@ -58,11 +62,13 @@ Complex& Complex::operator*=(const Complex& rhs) {
 	return *this;
 }
 
+
 Complex& Complex::operator*=(double real_rhs) {
 	Complex c = Complex(real_rhs, 0);
 	*this *= c;
 	return *this;
 }
+
 
 Complex& Complex::operator+=(const Complex& rhs) {
 	this->re += rhs.re;
@@ -71,7 +77,7 @@ Complex& Complex::operator+=(const Complex& rhs) {
 }
 
 
-
+// for converting to string in form a+bi
 std::string Complex::toString()
 {
 	std::stringstream ss("");
@@ -85,6 +91,7 @@ std::string Complex::toString()
 	return ss.str();
 }
 
+// return magnitude of z
 double Complex::abs() {
 	return std::sqrt(std::pow(re, 2) + std::pow(im, 2));
 }
